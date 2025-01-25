@@ -1,25 +1,40 @@
-let humanScore = 0;
-let computerScore = 0;
+playGame();
 
-while(true) {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-}
-function playRound(humanChoice, computerChoice) {
-    let outcome = findOutcome(humanChoice, computerChoice);
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
 
-    switch(outcome) {
-        case "tie":
-            console.log(`It's a tie between your ${humanChoice} and the computer's ${computerChoice}!`);
-            break;
-        case "win":
-            console.log(`You win! Your ${humanChoice} beats the computer's ${computerChoice}!`);
-            humanScore++;
-            break;
-        case "lose":
-            console.log(`You lose! The computer's ${computerChoice} beats your ${humanChoice}!`);
-            computerScore++;
+    for(let i=0; i<5; i++) {
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+
+        console.log(`Current Scores: Human: ${humanScore}, Computer: ${computerScore}`);
+    }
+
+    if(computerScore > humanScore) {
+        console.log(`Computer wins!`);
+    } else if(humanScore > computerScore) {
+        console.log(`Human wins!`)
+    } else {
+        console.log(`It's a tie!`);
+    }
+
+    function playRound(humanChoice, computerChoice) {
+        let outcome = findOutcome(humanChoice, computerChoice);
+    
+        switch(outcome) {
+            case "tie":
+                console.log(`It's a tie between your ${humanChoice} and the computer's ${computerChoice}!`);
+                break;
+            case "win":
+                console.log(`You win! Your ${humanChoice} beats the computer's ${computerChoice}!`);
+                humanScore++;
+                break;
+            case "lose":
+                console.log(`You lose! The computer's ${computerChoice} beats your ${humanChoice}!`);
+                computerScore++;
+        }
     }
 }
 
@@ -63,7 +78,7 @@ function getHumanChoice() {
 
     while(!(isValidChoice(choice))) {
         choice = prompt("Type your choice: rock, paper, or scissors");
-        
+
         if(choice == null) {
             continue;
         }
