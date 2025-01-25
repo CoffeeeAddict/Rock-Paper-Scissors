@@ -1,4 +1,47 @@
-console.log(getHumanChoice());
+let humanScore = 0;
+let computerScore = 0;
+
+while(true) {
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+}
+function playRound(humanChoice, computerChoice) {
+    let outcome = findOutcome(humanChoice, computerChoice);
+
+    switch(outcome) {
+        case "tie":
+            console.log(`It's a tie between your ${humanChoice} and the computer's ${computerChoice}!`);
+            break;
+        case "win":
+            console.log(`You win! Your ${humanChoice} beats the computer's ${computerChoice}!`);
+            humanScore++;
+            break;
+        case "lose":
+            console.log(`You lose! The computer's ${computerChoice} beats your ${humanChoice}!`);
+            computerScore++;
+    }
+}
+
+function findOutcome(humanAnswer, computerAnswer) {
+    if(humanAnswer === computerAnswer) {
+        return "tie";
+    }
+
+    if(humanAnswer === "rock" && computerAnswer === "paper") {
+        return "lose";
+    }
+
+    if(humanAnswer === "paper" && computerAnswer === "scissors") {
+        return "lose";
+    }
+
+    if(humanAnswer === "scissors" && computerAnswer === "rock") {
+        return "lose";
+    }
+
+    return "win";
+}
 
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3);
@@ -20,6 +63,11 @@ function getHumanChoice() {
 
     while(!(isValidChoice(choice))) {
         choice = prompt("Type your choice: rock, paper, or scissors");
+        
+        if(choice == null) {
+            continue;
+        }
+
         choice = choice.toLowerCase();
     }
 
@@ -27,7 +75,7 @@ function getHumanChoice() {
 }
 
 function isValidChoice(choice) {
-    if(choice == "rock" || choice == "paper" || choice == "scissors") {
+    if(choice === "rock" || choice === "paper" || choice === "scissors") {
         return true;
     } else {
         return false;
