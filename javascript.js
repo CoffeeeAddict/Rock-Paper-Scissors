@@ -1,4 +1,4 @@
-console.log("test");
+
 playGame();
 
 function playGame() {
@@ -79,10 +79,6 @@ function getHumanChoice() {
 
     while(!(isValidChoice(choice))) {
         choice = prompt("Type your choice: rock, paper, or scissors");
-
-        if(choice == null) {
-            continue;
-        }
 
         choice = choice.toLowerCase();
     }
