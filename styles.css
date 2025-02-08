@@ -1,0 +1,45 @@
+body {
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreTitle {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+.rock, .paper, .scissors {
+    height: 50px;
+    width: 75px;
+}
+
+.results {
+    font-size: 20px;
+    text-align: center;
+}
+
+.finalText {
+    margin: 10px;
+}
+
