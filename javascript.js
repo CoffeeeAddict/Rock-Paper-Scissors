@@ -8,13 +8,21 @@ document.querySelector(".computerScore").append(computerScoreText);
 
 let humanScore = 0;
 let computerScore = 0;
+let hasWon = false;
+const controller = new AbortController();
 
 humanScoreText.textContent = humanScore;
 computerScoreText.textContent = computerScore;
 
 playButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-        playRound(e);
+    button.addEventListener("click", function click(e) {
+        if(hasWon) {
+            controller.abort();
+        } else {
+            playRound(e);
+        }
+    }, {
+        signal: controller.signal
     })
 })
 
@@ -42,11 +50,7 @@ function gameFinish() {
         finalText.textContent = "It's a tie!";
     }
     resultText.append(finalText);
-    playButtons.forEach((button) => {
-        button.removeEventListener("click", (e) => {
-            playRound(e);
-        })
-    })
+    hasWon = true;
 }
 
 function getHumanChoice(classes) {
